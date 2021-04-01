@@ -1,0 +1,25 @@
+<div class="container">
+  <h1 class="my-3 ml-3">movie</h1>
+  <div>
+    <table class="table">
+    <thead>
+      <th>image</th>
+      <th>タイトル</th>
+      <th>詳細</th>
+      <th>公開</th>
+    </thead>
+    <tbody>
+        <% @movies.each do |movie| %>
+          <tr class="mt-1">
+              <td><%= image_tag movie.image_url %></td>
+              <td><%= movie.name %></td>
+              <td><%= movie.description %></td>
+              <% if movie.is_showing %>
+                <td>onAir</td>
+              <% end %>
+          </tr>
+        <% end %>
+    </tbody>
+    </table>
+  </div>
+</div>
