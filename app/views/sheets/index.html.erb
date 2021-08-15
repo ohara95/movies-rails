@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="d-flex justify-content-between align-items-center">
+    <h1 >座席配置</h1>
+    <% if flash[:error] %>
+      <div class="alert alert-danger"><%= flash[:error] %></div>
+    <% end %>
+  </div>
+  <div class="mt-2">
+    <table class="table">
+      <thead>
+        <th></th>
+        <th></th>
+        <th>スクリーン</th>
+        <th></th>
+        <th></th>
+      </thead>
+      <tbody>
+      <% @sheets.each_slice(5) do |sheet| %>
+        <tr class="mt-1">
+          <% sheet.each do |cl| %>
+          <td class=<%= 'bg-secondary' if @reserved_sheet_ids.include?(cl.id)%>>
+            <%= link_to new_movie_schedule_reservation_path(date: params[:start_time], sheet_id: cl.id),
+            tabindex:"-1" do %>
+              <%= cl.row %>-<%= cl.column %>
+            <% end %>
+          </td>
+          <% end %>
+        </tr>
+      <% end %>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+

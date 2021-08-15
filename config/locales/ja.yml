@@ -1,0 +1,15 @@
+ja:
+  activerecord:
+    attributes:
+      movie:
+        name: "タイトル"
+        year: "公開年"
+        description: "概要"
+        image_url: "画像URL"
+        is_showing: "上映中"
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M"
+  update: "更新"
+  create: "作成"
+  back: "戻る"

@@ -1,0 +1,6 @@
+<div class="container">
+  <%= form_for @schedule, url: admin_schedule_path(@schedule) do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f}, model: @schedule %>
+    <%= f.submit t('update'), class: 'btn btn-primary' %>
+  <% end %>
+</div>

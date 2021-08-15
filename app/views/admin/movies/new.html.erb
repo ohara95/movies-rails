@@ -1,0 +1,7 @@
+<div class="container">
+  <%= form_for @movie, url: admin_movies_path do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f}, model: @movie %>
+    <%= f.submit t('create'), class: 'btn btn-primary' %>
+    <%= link_to t('back'), admin_movies_path, class: 'btn btn-primary' %>
+  <% end %>
+</div>

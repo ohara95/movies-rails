@@ -1,0 +1,13 @@
+<%= form_with url: movie_schedule_reservations_path(movie_id: params[:movie_id], schedule_id: params[:schedule_id]), local: true do |f| %>
+  <div class="form-group field">
+    <%= f.label :name, "予約者氏名", class: "control-label" %>
+    <%= f.text_field :name, class: "form-control" %>
+  </div>
+  <div class="form-group field">
+    <%= f.label :email, "メールアドレス", class: "control-label" %>
+    <%= f.email_field :email, class: "form-control" %>
+  </div>
+  <%= f.hidden_field :date, value: params[:date] %>
+  <%= f.hidden_field :sheet_id, value: params[:sheet_id] %>
+  <%= f.submit t('create'), class: 'btn btn-primary' %>
+<% end %>

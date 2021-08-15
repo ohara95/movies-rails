@@ -1,0 +1,9 @@
+<%= render 'layouts/error_messages', model: model %>
+  <p class="form-group field">
+    <%= f.label :start_time, "開始時刻", class: "control-label" %>
+    <%= f.time_field :start_time, class: "form-control" %>
+  </p>
+  <p class="form-group field">
+    <%= f.label :end_time, "終了時刻", class: "control-label" %>
+    <%= f.time_field :end_time, class: "form-control" %>
+  </p>

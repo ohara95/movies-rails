@@ -1,0 +1,7 @@
+<div class="container">
+  <%= form_for @schedule, url: admin_movie_schedules_path(movie_id: params[:movie_id]) do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f}, model: @schedule %>
+    <%= f.submit t('create'), class: 'btn btn-primary' %>
+    <%= link_to t('back'), admin_movie_schedules_path(movie_id: params[:movie_id]), class: 'btn btn-primary' %>
+  <% end %>
+</div>
