@@ -4,6 +4,9 @@ Rails.application.routes.draw do
   # namespace 'admin' do
   #   get 'movies', to: 'movies#index'
   # end
+
+  root  'movies#index'
+
   resources :movies do
     resources :schedules do
       resources :sheets, only: :index, shallow: true 
