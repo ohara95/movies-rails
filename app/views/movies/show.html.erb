@@ -18,7 +18,7 @@
   <div class="d-flex align-items-center justify-content-center">
     <label for="description" class="col-sm-2 col-form-label">詳細</label>
     <div class="col-md-4">
-      <input type="text" readonly class="form-control-plaintext h3" id="description" value="<%= @movie.description == '' ? '記載なし' : simple_format(@movie.description) %>">
+      <input type="text" readonly class="form-control-plaintext h3" id="description" value="<%= @movie.description == '' ? '記載なし' : @movie.description %>">
     </div>
   </div>
   <div class="d-flex align-items-center justify-content-center">
