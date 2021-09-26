@@ -1,7 +1,9 @@
 <div class="container">
   <%= form_for @movie, url: admin_movies_path do |f| %>
     <%= render :partial => 'form', :locals => {:f => f}, model: @movie %>
-    <%= f.submit t('create'), class: 'btn btn-primary' %>
-    <%= link_to t('back'), admin_movies_path, class: 'btn btn-primary' %>
+    <div class="d-flex justify-content-center mt-2">
+      <%= f.submit t('create'), class: 'btn btn-outline-dark col-md-2' %>
+      <%= link_to t('back'), admin_movies_path, class: 'btn btn-outline-dark col-md-2 ml-2' %>
+    </div>
   <% end %>
 </div>

@@ -28,6 +28,7 @@ gem 'uglifier'
 gem 'jquery-rails'
 gem 'bootstrap'
 gem 'rails-i18n'
+gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.2', require: false

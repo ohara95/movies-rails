@@ -1,0 +1,6 @@
+<div class="container ">
+  <%= form_for @reservations, url: admin_reservation_path(@reservations) do |f| %>
+    <%= render :partial => 'form', :locals => {:f => f} %>
+    <%= f.submit t('update'), class: 'btn btn-primary' %>
+  <% end %>
+</div>

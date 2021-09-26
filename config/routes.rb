@@ -23,7 +23,6 @@ Rails.application.routes.draw do
   resources :sheets, only: :index
   resources :schedules
 
-
   # get 'admin/movies', to: 'admin/movies#index'
   # get 'admin/movies/new', to: 'admin/movies#new'
   # post 'admin/movies', to: 'admin/movies#create'
@@ -35,6 +34,7 @@ Rails.application.routes.draw do
     resources :movies do
       resources :schedules, shallow: true 
     end
+    resources :reservations
   end
 # shallow: true idがくどい時
 # GET等は極力使わない

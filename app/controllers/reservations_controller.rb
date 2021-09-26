@@ -1,4 +1,8 @@
 class ReservationsController < ApplicationController
+
+  def index
+  end
+  
   def new
     @reservation = Reservation.new
   end
@@ -22,7 +26,9 @@ class ReservationsController < ApplicationController
   private
 
   def reservation_params
-    params.permit(:email, :name, :date, :sheet_id, :schedule_id)
+
+    # movie_idがnilになる
+    params.permit(:email, :name, :date, :sheet_id, :schedule_id, :movie_id)
   end
 end
 

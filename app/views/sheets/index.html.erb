@@ -6,7 +6,7 @@
     <% end %>
   </div>
   <div class="mt-2">
-    <table class="table">
+    <table class="table table-bordered text-center">
       <thead>
         <th></th>
         <th></th>
@@ -18,12 +18,17 @@
       <% @sheets.each_slice(5) do |sheet| %>
         <tr class="mt-1">
           <% sheet.each do |cl| %>
-          <td class=<%= 'bg-secondary' if @reserved_sheet_ids.include?(cl.id)%>>
-            <%= link_to new_movie_schedule_reservation_path(date: params[:start_time], sheet_id: cl.id),
-            tabindex:"-1" do %>
+            <% if @reserved_sheet_ids.include?(cl.id) %>
+            <td class='bg-secondary'>
               <%= cl.row %>-<%= cl.column %>
+            </td>
+            <% else %>
+              <td >
+                <%= link_to new_movie_schedule_reservation_path(date: params[:start_time], sheet_id: cl.id), tabindex:"-1" do %>
+                  <%= cl.row %>-<%= cl.column %>
+                <% end %>
+              </td>
             <% end %>
-          </td>
           <% end %>
         </tr>
       <% end %>

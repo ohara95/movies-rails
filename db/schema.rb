@@ -26,10 +26,12 @@ ActiveRecord::Schema.define(version: 2021_05_06_113019) do
     t.date "date", null: false
     t.integer "schedule_id", null: false
     t.integer "sheet_id", null: false
+    t.integer "movie_id"
     t.string "email", limit: 255, null: false
     t.string "name", limit: 50, null: false
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["movie_id"], name: "index_reservations_on_movie_id"
     t.index ["schedule_id"], name: "index_reservations_on_schedule_id"
     t.index ["sheet_id"], name: "index_reservations_on_sheet_id"
   end
@@ -48,6 +50,7 @@ ActiveRecord::Schema.define(version: 2021_05_06_113019) do
     t.string "row", limit: 1, null: false
   end
 
+  add_foreign_key "reservations", "movies"
   add_foreign_key "reservations", "schedules"
   add_foreign_key "reservations", "sheets"
   add_foreign_key "schedules", "movies"

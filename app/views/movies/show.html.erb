@@ -1,38 +1,61 @@
-<div>
+<div class="container mt-4">
   <%= render "layouts/error_messages", locals: { model: @movie } %> 
   <% if flash[:notice] %>
     <div class="alert alert-success"><%= flash[:notice] %></div>
   <% end %>
-  <div>
-    <% if @movie.image_url.present? %>
-      <%= image_tag @movie.image_url %>
-    <% end %>
+  <div class="d-flex align-items-center justify-content-center">
+    <label for="title" class="col-sm-2 col-form-label">タイトル</label>
+    <div class="col-md-4">
+      <input type="text" readonly class="form-control-plaintext h3" id="title" value="<%= @movie.name %>">
+    </div>
   </div>
-  <div><%= @movie.name %></div>
-  <div><%= @movie.year %></div>
-  <div><%= simple_format(@movie.description) %></div>
-  <div>
-    <% if @movie.is_showing %>
-      上映中
-    <% else %>
-      上映予定
-    <% end %>
+  <div class="d-flex align-items-center justify-content-center">
+    <label for="year" class="col-sm-2 col-form-label">公開年</label>
+    <div class="col-md-4">
+      <input type="text" readonly class="form-control-plaintext h3" id="year" value="<%= @movie.year %>年">
+    </div>
   </div>
-    <% if @schedule.present? %>
-      <div>上映開始時刻: <%= @schedule.start_time.to_s(:time_jp) %></div>
-      <div>上映終了時刻: <%= @schedule.end_time.to_s(:time_jp) %></div>
-    <% end %>
+  <div class="d-flex align-items-center justify-content-center">
+    <label for="description" class="col-sm-2 col-form-label">詳細</label>
+    <div class="col-md-4">
+      <input type="text" readonly class="form-control-plaintext h3" id="description" value="<%= @movie.description == '' ? '記載なし' : simple_format(@movie.description) %>">
+    </div>
   </div>
+  <div class="d-flex align-items-center justify-content-center">
+    <label class="col-sm-2 col-form-label"></label>
+    <div class="col-md-4">
+      <input type="text" readonly class="form-control-plaintext h3" value="<%= @movie.is_showing ? '上映中' : '上映予定' %>">
+    </div>
+  </div>
+  <% if @schedule.present? %>
+    <div class="d-flex align-items-center justify-content-center">
+      <label class="col-sm-2 col-form-label">上映時刻</label>
+      <div class="col-md-4">
+        <ul class="list-group">
+          <% @schedule_hash[:start_time].each_with_index do |item,i| %>
+            <li class="list-group-item"><%= item.to_s(:time_jp) %>~<%= @schedule_hash[:end_time][i].to_s(:time_jp) %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  <% end %>
   <%= form_with url: movie_setup_resevation_path(movie_id: params[:id]), method: :get, local: true do |f| %>
-    <div class="form-group field">
-      <%= f.label :start_time, "日付", class: "control-label" %>
-      <%= f.select :start_time, (Date.today..(Date.today + 6.days)).map {|i| [i.strftime("%Y/%m/%d"), i.strftime("%F")]} %> 
+    <div class="d-flex align-items-center justify-content-center mt-2">
+      <%= f.label :date, "日付", class: "col-sm-2 col-form-label" %>
+      <div class="col-md-4">
+        <%= f.select :date, (Date.today..(Date.today + 6.days)).map {|i| [i.strftime("%Y/%m/%d"), i.strftime("%F")]}, {}, class: 'form-control' %> 
+      </div>
     </div>
-    <div class="form-group field">
-      <%= f.label :schedule_id, "時間", class: "control-label"  %>
-      <%= f.select :schedule_id, @start_time, include_blank: "選択して下さい" %>
+    <div class="d-flex align-items-center justify-content-center mt-2">
+      <%= f.label :start_time, "上映開始時間", class: "col-sm-2 col-form-label" %>
+      <div class="col-md-4">
+        <%= f.select :start_time, @time_arr, { selected: @time }, { class: 'form-control' } %>
+      </div>
     </div>
-    <%= f.submit '座席を予約する', class: 'btn btn-outline-dark' %>
+    <%= f.hidden_field :schedule_id, value: "1" %>
+    <div class="d-flex justify-content-center mt-2">
+      <%= f.submit '座席を予約する', class: 'btn btn-outline-dark col-md-2' %>
+      <%= link_to '戻る', movies_path, class: 'btn btn-outline-dark col-md-2 ml-2' %>
+    </div>
   <% end %>
 </div>
-

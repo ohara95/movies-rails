@@ -3,6 +3,7 @@ class Admin::SchedulesController < ApplicationController
   def index
     @schedules = Schedule.includes(:movie).where(movie_id: params[:movie_id])
     @schedule = Schedule.find_by(movie_id: params[:movie_id])
+    @schedule_name = Movie.find(params[:movie_id]).name
     # 映画詳細と紐づくスケジュールを表示
   end
 
