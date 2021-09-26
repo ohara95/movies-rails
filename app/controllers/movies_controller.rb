@@ -18,7 +18,7 @@ class MoviesController < ApplicationController
     time.each do |_|
       @time_arr.push([])
     end
-    # f.selectの値を調整
+    # f.selectの値を調整する
     time.each.with_index do |item, i|
       @time_arr[i].push(make_time[i], item)
     end
