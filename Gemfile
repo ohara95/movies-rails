@@ -24,6 +24,7 @@ gem 'jbuilder', '~> 2.7'
 gem 'uglifier'
 gem 'jquery-rails'
 gem 'bootstrap'
+gem 'bootstrap-sass'
 gem 'rails-i18n'
 gem 'carrierwave', '>= 2.0.0.rc', '< 3.0'
 
